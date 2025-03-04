@@ -1,6 +1,6 @@
 [package]
 name = "orbyte"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2021"
 authors = ["Ali Aghaahmadi <itsaliaghaahmadi@gmail.com>"]
 description = "A serialization/deserialization library"
@@ -10,4 +10,4 @@ categories = ["development-tools", "parsing"]
 
 
 [dependencies]
-orbyte_proc = { path = "orbyte_proc/." }
+orbyte_proc = { version = "0.0.1", path = "orbyte_proc/." }
