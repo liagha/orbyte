@@ -10,9 +10,4 @@ categories = ["development-tools", "parsing"]
 
 
 [dependencies]
-syn = { version = "2.0.96", features = ["parsing"] }
-quote = { version = "1.0" }
-proc-macro2 = { version = "1.0.93" }
-
-[lib]
-proc-macro = true
+orbyte_proc = { path = "orbyte_proc/." }

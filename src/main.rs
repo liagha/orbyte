@@ -1,8 +1,5 @@
-pub mod serialize;
-pub mod deserialize;
-
-pub use crate::serialize::Serialize;
-pub use crate::deserialize::Deserialize;
+use orbyte::Deserialize;
+use orbyte::Serialize;
 
 #[derive(orbyte::Orbyte, Clone, PartialEq, Debug)]
 pub struct ChatMessage {

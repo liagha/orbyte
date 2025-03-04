@@ -1,0 +1,12 @@
+[package]
+name = "orbyte_proc"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+syn = { version = "2.0.96", features = ["parsing"] }
+quote = { version = "1.0" }
+proc-macro2 = { version = "1.0.93" }
+
+[lib]
+proc-macro = true
