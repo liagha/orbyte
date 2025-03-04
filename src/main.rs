@@ -1,7 +1,8 @@
 use orbyte::Deserialize;
 use orbyte::Serialize;
+use orbyte::Orbyte;
 
-#[derive(orbyte::Orbyte, Clone, PartialEq, Debug)]
+#[derive(Orbyte, Clone, PartialEq, Debug)]
 pub struct ChatMessage {
     pub sender: String,
 
@@ -10,7 +11,7 @@ pub struct ChatMessage {
     pub timestamp: Option<i32>,
 }
 
-#[derive(orbyte::Orbyte, Clone, PartialEq, Debug)]
+#[derive(Orbyte, Clone, PartialEq, Debug)]
 pub enum Content {
     Text(String),
 
@@ -19,7 +20,7 @@ pub enum Content {
     Signal(u8)
 }
 
-#[derive(orbyte::Orbyte, Clone, PartialEq, Debug)]
+#[derive(Orbyte, Clone, PartialEq, Debug)]
 pub struct FileData {
     pub data: Vec<u8>,
 
@@ -63,9 +64,9 @@ fn main() {
 
     let bytes = signal.serialize();
     let signal_bytes = Content::Signal(0).serialize();
-    println!("Data Size: {}", bytes.len());
-    println!("Data2 Size: {}", empty.len());
-    println!("Data3 Size: {}", empty2.len());
+    println!("Bytes Size: {}", bytes.len());
+    println!("Data Size: {}", empty.len());
+    println!("Data2 Size: {}", empty2.len());
     println!("Data3 Size: {}", empty3.len());
     println!("Raw Text Size: {}", "ali".to_string().as_bytes().len());
     println!("Signal Size: {}", signal_bytes.len());

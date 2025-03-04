@@ -8,9 +8,57 @@ impl Serialize for u8 {
     }
 }
 
+impl Serialize for u16 {
+    fn serialize(&self) -> Vec<u8> {
+        self.to_le_bytes().to_vec()
+    }
+}
+
+impl Serialize for u32 {
+    fn serialize(&self) -> Vec<u8> {
+        self.to_le_bytes().to_vec()
+    }
+}
+
+impl Serialize for u64 {
+    fn serialize(&self) -> Vec<u8> {
+        self.to_le_bytes().to_vec()
+    }
+}
+
 impl Serialize for i32 {
     fn serialize(&self) -> Vec<u8> {
         self.to_le_bytes().to_vec()
+    }
+}
+
+impl Serialize for i64 {
+    fn serialize(&self) -> Vec<u8> {
+        self.to_le_bytes().to_vec()
+    }
+}
+
+impl Serialize for f32 {
+    fn serialize(&self) -> Vec<u8> {
+        self.to_le_bytes().to_vec()
+    }
+}
+
+impl Serialize for f64 {
+    fn serialize(&self) -> Vec<u8> {
+        self.to_le_bytes().to_vec()
+    }
+}
+
+impl Serialize for bool {
+    fn serialize(&self) -> Vec<u8> {
+        vec![*self as u8]
+    }
+}
+
+impl Serialize for char {
+    fn serialize(&self) -> Vec<u8> {
+        (*self as u32).serialize()
     }
 }
 
