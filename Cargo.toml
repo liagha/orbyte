@@ -1,6 +1,6 @@
 [package]
 name = "orbyte"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 authors = ["Ali Aghaahmadi <itsaliaghaahmadi@gmail.com>"]
 description = "A serialization/deserialization library"
@@ -10,9 +10,9 @@ categories = ["development-tools", "parsing"]
 
 
 [dependencies]
-syn = { version = "2.0", features = ["full"] }
-quote = "1.0"
-proc-macro2 = "1.0.93"
+syn = { version = "2.0.96", features = ["parsing"] }
+quote = { version = "1.0" }
+proc-macro2 = { version = "1.0.93" }
 
 [lib]
 proc-macro = true
