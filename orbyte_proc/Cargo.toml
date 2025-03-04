@@ -1,7 +1,12 @@
 [package]
 name = "orbyte_proc"
-version = "0.0.1"
-edition = "2024"
+version = "0.0.3"
+edition = "2021"
+authors = ["Ali Aghaahmadi <itsaliaghaahmadi@gmail.com>"]
+description = "A serialization/deserialization library"
+license = "MIT OR Apache-2.0"
+keywords = ["serialization", "macro", "rust"]
+categories = ["development-tools", "parsing"]
 
 [dependencies]
 syn = { version = "2.0.96", features = ["parsing"] }
