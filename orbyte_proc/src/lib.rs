@@ -96,10 +96,7 @@ fn handle_struct(
                 },
             )
         }
-        Fields::Unit => (
-            quote! { Vec::new() },
-            quote! { Some(Self) },
-        ),
+        Fields::Unit => (quote! { Vec::new() }, quote! { Some(Self) }),
     }
 }
 
@@ -121,7 +118,10 @@ fn handle_enum(
                 let mut field_deserializations = Vec::new();
 
                 for field in fields_named.named.iter() {
-                    let field_name = field.ident.clone().expect("Named field must have an identifier");
+                    let field_name = field
+                        .ident
+                        .clone()
+                        .expect("Named field must have an identifier");
                     let field_type = &field.ty;
 
                     field_names.push(field_name.clone());

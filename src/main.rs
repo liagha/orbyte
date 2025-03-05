@@ -1,6 +1,6 @@
 use orbyte::Deserialize;
-use orbyte::Serialize;
 use orbyte::Orbyte;
+use orbyte::Serialize;
 
 #[derive(Orbyte, Clone, PartialEq, Debug)]
 pub struct ChatMessage {
@@ -17,7 +17,7 @@ pub enum Content {
 
     File(FileData),
 
-    Signal(u8)
+    Signal(u8),
 }
 
 #[derive(Orbyte, Clone, PartialEq, Debug)]
@@ -48,19 +48,22 @@ fn main() {
         sender: "ali".to_string(),
         content: None,
         timestamp: Some(100000000),
-    }.serialize();
+    }
+    .serialize();
 
     let empty2 = ChatMessage {
         sender: "ali".to_string(),
         content: Some(Content::Signal(0)),
         timestamp: None,
-    }.serialize();
+    }
+    .serialize();
 
     let empty3 = ChatMessage {
         sender: "ali".to_string(),
         content: None,
         timestamp: None,
-    }.serialize();
+    }
+    .serialize();
 
     let bytes = signal.serialize();
     let signal_bytes = Content::Signal(0).serialize();
