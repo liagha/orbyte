@@ -12,4 +12,4 @@ categories = ["development-tools", "parsing"]
 debug = ["orbyte_proc/debug"]
 
 [dependencies]
-orbyte_proc = { version = "0.0.1", path = "orbyte_proc/." }
+orbyte_proc = { version = "0.0.2", path = "orbyte_proc/." }
