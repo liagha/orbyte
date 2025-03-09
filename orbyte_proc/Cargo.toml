@@ -9,7 +9,7 @@ keywords = ["serialization", "macro", "rust"]
 categories = ["development-tools", "parsing"]
 
 [features]
-default = ["debug"]
+default = []
 debug = ["broccli/xprint"]
 
 [dependencies]
