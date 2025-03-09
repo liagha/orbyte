@@ -1,6 +1,6 @@
 [package]
 name = "orbyte"
-version = "0.0.4"
+version = "0.0.5"
 edition = "2021"
 authors = ["Ali Aghaahmadi <itsaliaghaahmadi@gmail.com>"]
 description = "A serialization/deserialization library"
@@ -13,3 +13,7 @@ debug = ["orbyte_proc/debug"]
 
 [dependencies]
 orbyte_proc = { version = "0.0.2", path = "orbyte_proc/." }
+
+[[example]]
+name = "simple"
+path = "example/simple.rs"

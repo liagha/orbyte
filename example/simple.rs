@@ -58,21 +58,21 @@ fn main() {
         content: None,
         timestamp: Some(100000000),
     }
-    .serialize();
+        .serialize();
 
     let empty2 = ChatMessage {
         sender: "ali".to_string(),
         content: Some(Content::Signal(0)),
         timestamp: None,
     }
-    .serialize();
+        .serialize();
 
     let empty3 = ChatMessage {
         sender: "ali".to_string(),
         content: None,
         timestamp: None,
     }
-    .serialize();
+        .serialize();
 
     let bytes = signal.serialize();
     let signal_bytes = Content::Signal(0).serialize();
