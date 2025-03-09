@@ -8,6 +8,8 @@ license = "MIT OR Apache-2.0"
 keywords = ["serialization", "macro", "rust"]
 categories = ["development-tools", "parsing"]
 
+[features]
+debug = ["orbyte_proc/debug"]
 
 [dependencies]
 orbyte_proc = { version = "0.0.1", path = "orbyte_proc/." }

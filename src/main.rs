@@ -21,6 +21,15 @@ pub enum Content {
 }
 
 #[derive(Orbyte, Clone, PartialEq, Debug)]
+pub enum Content3 {
+    Text,
+
+    File,
+
+    Signal,
+}
+
+#[derive(Orbyte, Clone, PartialEq, Debug)]
 pub struct FileData {
     pub data: Vec<u8>,
 

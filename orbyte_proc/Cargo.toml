@@ -8,10 +8,15 @@ license = "MIT OR Apache-2.0"
 keywords = ["serialization", "macro", "rust"]
 categories = ["development-tools", "parsing"]
 
+[features]
+default = ["debug"]
+debug = ["broccli/xprint"]
+
 [dependencies]
 syn = { version = "2.0.96", features = ["parsing"] }
 quote = { version = "1.0" }
 proc-macro2 = { version = "1.0.93" }
+broccli = { version = "0.0.11" }
 
 [lib]
 proc-macro = true
