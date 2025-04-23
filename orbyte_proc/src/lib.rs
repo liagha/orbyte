@@ -1,13 +1,13 @@
-mod enums;
-mod structs;
-
 extern crate proc_macro;
 use proc_macro::TokenStream;
-use broccli::xprintln;
 use quote::quote;
 use syn::{parse_macro_input, Data, DeriveInput};
-use crate::enums::handle_enum;
-use crate::structs::handle_struct;
+
+#[cfg(feature = "debug")]
+use broccli::xprintln;
+
+mod structs;
+mod enums;
 
 #[proc_macro_derive(Orbyte)]
 pub fn derive_orbyte(input: TokenStream) -> TokenStream {
@@ -21,12 +21,12 @@ pub fn derive_orbyte(input: TokenStream) -> TokenStream {
         Data::Struct(data_struct) => {
             #[cfg(feature = "debug")]
             xprintln!("- Type is a struct");
-            handle_struct(name, data_struct)
+            structs::handle_struct(name, data_struct)
         }
         Data::Enum(data_enum) => {
             #[cfg(feature = "debug")]
             xprintln!("- Type is an enum");
-            handle_enum(name, data_enum)
+            enums::handle_enum(name, data_enum)
         }
         Data::Union(_data_union) => {
             #[cfg(feature = "debug")]
@@ -36,14 +36,14 @@ pub fn derive_orbyte(input: TokenStream) -> TokenStream {
     };
 
     let expanded = quote! {
-        impl Serialize for #name {
+        impl orbyte::Serialize for #name {
             fn serialize(&self) -> Vec<u8> {
                 #serialization
             }
         }
 
-        impl Deserialize for #name {
-            fn deserialize(bytes: &[u8]) -> Option<Self> {
+        impl orbyte::Deserialize for #name {
+            fn deserialize(bytes: &[u8]) -> Result<Self, orbyte::OrbyteError> {
                 #deserialization
             }
         }

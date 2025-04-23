@@ -1,4 +1,6 @@
+#[cfg(feature = "debug")]
 use broccli::xprintln;
+
 use quote::quote;
 use syn::{DataStruct, Fields};
 
@@ -44,7 +46,7 @@ pub fn handle_struct(
                 quote! {
                     let mut offset = 0;
                     #(#deserialize_statements)*
-                    Some(Self { #(#field_names),* })
+                    Ok(Self { #(#field_names),* })
                 },
             )
         }
@@ -81,7 +83,7 @@ pub fn handle_struct(
                 quote! {
                     let mut offset = 0;
                     #(#deserialize_statements)*
-                    Some(Self(#(#field_names),*))
+                    Ok(Self(#(#field_names),*))
                 },
             )
         }
@@ -89,7 +91,7 @@ pub fn handle_struct(
             #[cfg(feature = "debug")]
             xprintln!("--- Struct is a unit struct");
 
-            (quote! { Vec::new() }, quote! { Some(Self) })
+            (quote! { Vec::new() }, quote! { Ok(Self) })
         }
     }
 }

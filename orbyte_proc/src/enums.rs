@@ -1,4 +1,6 @@
+#[cfg(feature = "debug")]
 use broccli::xprintln;
+
 use quote::quote;
 use syn::{DataEnum, Fields};
 
@@ -58,7 +60,7 @@ pub fn handle_enum(
                     #index_literal => {
                         let mut offset = 1;
                         #(#field_deserializations)*
-                        Some(Self::#variant_name { #(#field_names),* })
+                        Ok(Self::#variant_name { #(#field_names),* })
                     }
                 });
             }
@@ -97,7 +99,7 @@ pub fn handle_enum(
                     #index_literal => {
                         let mut offset = 1;
                         #(#field_deserializations)*
-                        Some(Self::#variant_name(#(#field_names),*))
+                        Ok(Self::#variant_name(#(#field_names),*))
                     }
                 });
             }
@@ -113,7 +115,7 @@ pub fn handle_enum(
 
                 deserialize_variants.push(quote! {
                     #index_literal => {
-                        Some(Self::#variant_name)
+                        Ok(Self::#variant_name)
                     }
                 });
             }
@@ -130,9 +132,9 @@ pub fn handle_enum(
             }
         },
         quote! {
-            match bytes.get(0).copied()? {
+            match bytes.get(0).copied().ok_or(orbyte::OrbyteError::InvalidLength)? {
                 #(#deserialize_variants),*
-                _ => None,
+                _ => Err(orbyte::OrbyteError::InvalidLength),
             }
         },
     )

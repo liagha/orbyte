@@ -15,5 +15,9 @@ debug = ["orbyte_proc/debug"]
 orbyte_proc = { version = "0.0.3", path = "orbyte_proc/." }
 
 [[example]]
-name = "simple"
-path = "example/simple.rs"
+name = "point"
+path = "example/point.rs"
+
+[[example]]
+name = "message"
+path = "example/message.rs"

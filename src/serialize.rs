@@ -1,4 +1,14 @@
+//! Serialization logic for converting Rust types into byte vectors.
+
+/// Trait for types that can be serialized into a byte vector.
+///
+/// Implementors must define how to convert `Self` into a `Vec<u8>` representing
+/// the serialized form.
 pub trait Serialize {
+    /// Serializes `self` into a byte vector.
+    ///
+    /// The output format is type-specific, typically using little-endian for numbers
+    /// and length-prefixed UTF-8 for strings.
     fn serialize(&self) -> Vec<u8>;
 }
 
@@ -64,16 +74,20 @@ impl Serialize for char {
 
 impl Serialize for String {
     fn serialize(&self) -> Vec<u8> {
-        let mut bytes = Vec::new();
+        let mut bytes = Vec::with_capacity(1 + self.len());
         bytes.push(self.len() as u8);
         bytes.extend(self.as_bytes());
         bytes
     }
 }
 
-impl Serialize for Vec<u8> {
+impl<T: Serialize> Serialize for Vec<T> {
     fn serialize(&self) -> Vec<u8> {
-        self.clone()
+        let mut bytes = (self.len() as u32).serialize();
+        for item in self {
+            bytes.extend(item.serialize());
+        }
+        bytes
     }
 }
 
